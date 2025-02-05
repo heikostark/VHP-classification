@@ -29,7 +29,6 @@ procedure go
 
 	// image.split.rainbow.shift 3
 
-	image.split.colorpoint <192,192,192> <255,0,0> <255,192,192> <0,255,0> <0,0,255> <0,0,0>
 	// white red lightred green blue black
 
 	// image.dump
