@@ -1,0 +1,36 @@
+//!imagexd
+// This is a comment for the imagexd macro - you can use this macro like a programing language
+// For more infos, please see http://stark-jena.de | imagexd
+// Copyright (c) 2013-2025 by Heiko Stark
+
+pattern := "female-iso.c2"
+
+input.filename := pattern ".nii.gz"
+tensor.load input.filename
+
+vector.rgb
+tensor.westin
+
+output.filename := pattern "_westin.nii.gz"
+vector.save output.filename
+
+tensor.westin.rank
+
+output.filename := pattern "_westin_rank.nii.gz"
+vector.save output.filename
+
+vector.new
+
+tensor.eigenvector.max
+output.filename := pattern "_e1.nii.gz"
+vector.save output.filename
+
+output.filename := pattern "_e1.txt"
+vector.save output.filename
+
+tensor.eigenvector.mid
+output.filename := pattern "_e2.nii.gz"
+vector.save output.filename
+
+output.filename := pattern "_e2.txt"
+vector.save output.filename

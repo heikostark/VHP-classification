@@ -1,0 +1,28 @@
+//!imagexd
+// This is a comment for the imagexd macro - you can use this macro like a programing language
+// For more infos, please see http://stark-jena.de | imagexd
+// Copyright (c) 2013-2025 by Heiko Stark
+
+vector.load "*male-iso.c2_westin_rank.nii.gz"
+vector.norm.max
+
+r := vector.count <1,0,0>
+print r
+
+rg := vector.count <1,1,0>
+print rg
+
+g := vector.count <0,1,0>
+print g
+
+gb := vector.count <0,1,1>
+print gb
+
+b := vector.count <0,0,1>
+print b
+
+rb := vector.count <1,0,1>
+print rb
+
+z := vector.count <0,0,0>
+print z

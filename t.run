@@ -1,0 +1,16 @@
+//!imagexd
+// This is a comment for the imagexd macro - you can use this macro like a programing language
+// For more infos, please see http://stark-jena.de | imagexd
+// Copyright (c) 2013-2025 by Heiko Stark
+
+scalar.16bit
+scalar.load "female-iso.nii.gz"
+//scalar.smooth
+
+thread.max := 40
+
+scalar.fullscan false
+new := scalar.measure.thickness 32
+
+scalar.use new
+scalar.save "female-iso.t.nii.gz"

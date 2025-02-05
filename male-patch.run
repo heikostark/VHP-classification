@@ -1,0 +1,17 @@
+//!imagexd
+// This is a comment for the imagexd macro - you can use this macro like a programing language
+// For more infos, please see http://stark-jena.de | imagexd
+// Copyright (c) 2013-2025 by Heiko Stark
+
+scalar.8bit
+scalar.load "female-clean.nii.gz"
+
+scalar.move <1,1,3997> <4096,3061,5190> <12,0,0>
+
+scalar.patch.z <1465,1499>
+
+scalar.patch.z <2925,2941>
+
+scalar.patch.z <3982,3997>
+
+scalar.save "female.nii.gz"

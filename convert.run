@@ -1,0 +1,111 @@
+//!imagexd
+// This is a comment for the imagexd macro - you can use this macro like a programing language
+// For more infos, please see http://stark-jena.de | imagexd
+// Copyright (c) 2013-2025 by Heiko Stark
+
+procedure go
+	image.24bit
+	image.use default
+	filename := number ".rgb"
+	image.loadraw filename 0 4096 2700
+
+	image.setpeakmean.localblue 16 <10,26> 
+	
+	image.setmax.blue <0,0,0>
+	if save
+	then
+		filename := number "-clean.png" 
+		image.save filename
+	end
+
+	image.setbalance.midtones <-1000 ,-1000, -1000>
+	image.setadjust
+	image.remove.outliers 2
+	if save 
+	then
+		filename := number "-balance.png"
+		image.save filename
+	end
+
+	// image.split.rainbow.shift 3
+
+	image.split.colorpoint <192,192,192> <255,0,0> <255,192,192> <0,255,0> <0,0,255> <0,0,0>
+	// white red lightred green blue black
+
+	// image.dump
+
+	if save 
+	then
+		image.use default.1
+		filename := number "-gray.png"
+		image.save filename
+		image.use default.2
+		filename := number "-red.png"
+		image.save filename
+		image.use default.5
+		filename := number "-blue.png"
+		image.save filename
+	end
+	
+	new := image.combine default.2 default.1 default.5 
+
+	image.use new
+	image.remove.outliers 2
+
+	if save
+	then
+		filename := number "-rgb.png"
+		image.save filename
+	end
+
+	new := image.combine default.2 default.1
+
+	image.use new
+	image.remove.outliers 2
+	
+	image.gray
+	image.8bit
+	gray := image.copy
+	
+	image.use gray
+	filename := number "-8bit.png"
+	image.save filename
+end
+
+procedure part_go
+	save := 1
+	number := "1200"
+	go
+	number := "1400"
+	go
+	number := "1600"
+	go
+	//number := "1801"
+	number := "1800"
+	go
+	number := "2000"
+	go
+	number := "2200"
+	go
+	number := "2400"
+	go
+	number := "2600"
+	go
+	number := "2800"
+	go
+end
+
+procedure full_go
+	io.files *.rgb // load all files into a file list
+	io.files.sort
+
+	for io.files.length // for all files
+		print io.workdir / io.files.getdir / io.files.getfile
+		number := io.files.getname
+		go
+		io.files.next
+	end 
+end
+
+//part_go
+full_go
