@@ -2,6 +2,10 @@
 
 All files were processed with imagexd ([https://stark-jena.de/](https://stark-jena.de/)).
 
+[Imagexd](https://stark-jena.de/research-interests/software/imagexd/)
+
+[see more](https://stark-jena.de/research-interests/measurement/connective-tissue/)
+
 ---
 
 convert.run // Segmentation of the connective tissue from the original data
