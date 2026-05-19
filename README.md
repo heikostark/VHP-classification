@@ -10,17 +10,16 @@ All files were processed with imagexd ([https://stark-jena.de/](https://stark-je
 
 ---
 
-convert.run // Segmentation of the connective tissue from the original data
+* **convert.run** // Segmentation of the connective tissue from the original data
 
-male-patch.run // Gap filling
+* **male-patch.run** // Gap filling
 
-female-patch.run // Gap filling
+* **female-patch.run** // Gap filling
 
-mass.run // Calculation of the segment parts
+* **mass.run** // Calculation of the segment parts
 
-t.run // Calculation of connective tissue thicknesses
+* **t.run** // Calculation of connective tissue thicknesses
 
-c2.run  // Calculation of the tensor fields
+* **c2.run**  // Calculation of the tensor fields
 
-e1.run // Calculation of the eigenvalues/vectors on the tensor fields  
-
+* **e1.run** // Calculation of the eigenvalues/vectors on the tensor fields
