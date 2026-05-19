@@ -23,3 +23,7 @@ All files were processed with imagexd ([https://stark-jena.de/](https://stark-je
 * **c2.run**  // Calculation of the tensor fields
 
 * **e1.run** // Calculation of the eigenvalues/vectors on the tensor fields
+
+---
+
+* **imagexd.macro** // imagexd command overview
