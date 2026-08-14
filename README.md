@@ -631,7 +631,7 @@ See LICENSE file for full details.
 ## Author and Attribution
 
 **Heiko Stark**  
-Department of Simulation and Numerical Mathematics  
+Institute of Zoology and Evolutionary Research
 University of Jena
 
 **Research Interests:**
