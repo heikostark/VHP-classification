@@ -2,11 +2,13 @@
 
 **Reconstruction and Classification of Connective Tissue Distribution in Humans**
 
-A comprehensive collection of processing scripts for analyzing and classifying connective tissue distribution using the Visible Human Project (VHP) dataset.
+A comprehensive collection of processing scripts for analysing and classifying connective tissue distribution using the Visible Human Project (VHP) dataset.
+
+Stark H & Sartori J (2025) Human connective tissue – 3D datasets to characterise the material properties. Sci Data 12, 1771. DOI:[10.1038/s41597-025-06134-x](https://doi.org/10.1038/s41597-025-06134-x)
 
 ## Overview
 
-**VHP-Classification** is a project dedicated to the detailed analysis, reconstruction, and classification of connective tissue distribution patterns in human anatomical specimens. Using high-resolution cross-sectional imaging data from the Visible Human Project, this repository contains automated processing scripts that segment, analyze, and quantify connective tissue characteristics.
+**VHP-Classification** is a project dedicated to the detailed analysis, reconstruction, and classification of connective tissue distribution patterns in human anatomical specimens. Using high-resolution cross-sectional imaging data from the Visible Human Project, this repository contains automated processing scripts that segment, analyse, and quantify connective tissue characteristics.
 
 The project combines medical imaging analysis, tissue segmentation, quantitative morphology, and tensor field computation to create a comprehensive classification of connective tissue properties throughout the human body.
 
@@ -19,13 +21,13 @@ The Visible Human Project is a landmark initiative by the U.S. National Institut
 - **CT (Computed Tomography)** - For skeletal and dense tissue visualization
 - **MRI (Magnetic Resonance Imaging)** - For soft tissue and neural tissue visualization
 - **Cryosectioning** - High-resolution physical cross-sections of the whole body at 1mm intervals
-- **Color Photography** - High-resolution digital color images of cryosection surfaces
+- **Colour Photography** - High-resolution digital colour images of cryosection surfaces
 
 ### Research Focus
 
 This project specifically focuses on:
 - **Connective tissue characterization** - Analyzing fibrous tissue distribution
-- **Spatial organization** - Understanding how connective tissue is organized throughout the body
+- **Spatial organization** - Understanding how connective tissue is organised throughout the body
 - **Quantitative analysis** - Measuring tissue thickness, distribution, and properties
 - **Tensor field computation** - Representing directional properties of tissue organization
 - **Sex-based differences** - Comparing male and female connective tissue patterns
@@ -39,7 +41,7 @@ All scripts are written for the **imagexd** image processing framework and follo
 ```
 Raw VHP Image Data
         ↓
-[convert.run] - Segmentation & Color Splitting
+[convert.run] - Segmentation & Colour Splitting
         ↓
 [male-patch.run / female-patch.run] - Gap Filling
         ↓
@@ -58,15 +60,15 @@ Final Classification & Analysis
 
 ##### 1. **convert.run** - Image Segmentation and Color Processing
 
-**Purpose:** Converts raw VHP imaging data and segments connective tissue based on color information.
+**Purpose:** Converts raw VHP imaging data and segments connective tissue based on colour information.
 
 **Key Operations:**
-- Load raw 24-bit color image data (4096 x 2700 pixels)
-- Peak/mean normalization for local blue channel
-- Color balance adjustment using midtone correction
+- Load raw 24-bit colour image data (4096 x 2700 pixels)
+- Peak/mean normalisation for local blue channel
+- Colour balance adjustment using midtone correction
 - Outlier removal to reduce noise
-- Color-point based segmentation:
-  - Gray (background/artifacts)
+- Colour-point based segmentation:
+  - Grey (background/artifacts)
   - Red (connective tissue)
   - Light red (transitional tissue)
   - Green (specific tissue type)
@@ -92,12 +94,12 @@ Output: 1200-8bit.png, 1400-8bit.png, ... (segmented)
 
 ##### 2. **male-patch.run** & **female-patch.run** - Gap Filling
 
-**Purpose:** Fills segmentation gaps caused by image artifacts, tissue boundaries, or processing artifacts.
+**Purpose:** Fills segmentation gaps caused by image artefacts, tissue boundaries, or processing artefacts.
 
 **Key Operations:**
 - Morphological operations for gap closure
 - Interpolation across segmentation boundaries
-- Artifact removal and boundary smoothing
+- Artefact removal and boundary smoothing
 - Sex-specific processing parameters:
   - Male anatomy considerations
   - Female anatomy considerations
@@ -154,14 +156,14 @@ Output: 1200-8bit.png, 1400-8bit.png, ... (segmented)
 
 ##### 5. **c2.run** - Tensor Field Computation
 
-**Purpose:** Calculates second-order tensor fields representing directional properties of tissue organization.
+**Purpose:** Calculates second-order tensor fields representing directional properties of tissue organisation.
 
 **Key Operations:**
 - 16-bit scalar image loading
 - Connection method configuration (method 6: advanced connectivity)
 - Thread-based parallel processing (up to 40 threads)
-- Tensor computation with 8-neighborhood connectivity (x2)
-- Full-scan mode optimization
+- Tensor computation with 8-neighbourhood connectivity (x2)
+- Full-scan mode optimisation
 
 **Input:** High-resolution segmented images (16-bit NIFTI format)
 **Output:** Tensor field representation (3D tensor data)
@@ -169,7 +171,7 @@ Output: 1200-8bit.png, 1400-8bit.png, ... (segmented)
 **Configuration:**
 ```
 Connection method: 6 (advanced)
-Neighborhood: 8-connected (x2)
+Neighbourhood: 8-connected (x2)
 Threading: 40 threads (parallel processing)
 Format: NIFTI compressed (.nii.gz)
 ```
@@ -182,7 +184,7 @@ Format: NIFTI compressed (.nii.gz)
 
 ##### 6. **e1.run** - Eigenvalue/Eigenvector Analysis
 
-**Purpose:** Analyzes eigenvalues and eigenvectors of computed tensor fields to characterize tissue organization.
+**Purpose:** Analyses eigenvalues and eigenvectors of computed tensor fields to characterise tissue organisation.
 
 **Key Operations:**
 - Eigenvalue decomposition of tensor fields
@@ -201,7 +203,7 @@ Format: NIFTI compressed (.nii.gz)
 **Key Metrics:**
 - Fractional Anisotropy (FA): Degree of directional preference
 - Mean Diffusivity (MD): Average magnitude
-- Relative Anisotropy (RA): Normalized directional strength
+- Relative Anisotropy (RA): Normalised directional strength
 - Principal direction maps
 
 ### Reference Files
@@ -247,8 +249,8 @@ All scripts and associated documentation are distributed under the GPL-3.0 licen
 **VHP Cryosection Images:**
 - Format: 24-bit RGB raw files (.rgb)
 - Resolution: 4096 x 2700 pixels
-- Spacing: 1mm intervals through body
-- Color-coded tissue identification
+- Spacing: 1mm intervals through the body
+- Colour-coded tissue identification
 
 **VHP Data Access:**
 The Visible Human Project data is publicly available from:
@@ -260,12 +262,12 @@ The Visible Human Project data is publicly available from:
 ```
 Step 1: Image Segmentation (convert.run)
 ├─ Load raw RGB images
-├─ Color-based tissue classification
+├─ Colour-based tissue classification
 ├─ Channel splitting and combination
 └─ Output: Segmented 8-bit images
 
 Step 2: Gap Filling (male-patch.run / female-patch.run)
-├─ Sex-specific artifact removal
+├─ Sex-specific artefact removal
 ├─ Morphological closure
 └─ Output: Cleaned segmentation
 
@@ -345,10 +347,10 @@ image.loadraw filename 0 4096 2700
 // Change 4096 and 2700 to match your input image dimensions
 ```
 
-**Color Thresholds:**
+**Colour Thresholds:**
 ```
 image.split.colorpoint <192,192,192> <255,0,0> ...
-// Adjust RGB values for color-based segmentation
+// Adjust RGB values for colour-based segmentation
 ```
 
 **Threading:**
@@ -369,7 +371,7 @@ scalar.connection.method 6
 
 - Sex-based differences in connective tissue distribution
 - Regional tissue thickness variation
-- Tissue organization patterns
+- Tissue organisation patterns
 - Structural anisotropy analysis
 
 ### Medical Imaging
@@ -381,15 +383,15 @@ scalar.connection.method 6
 
 ### Biomechanical Modeling
 
-- Tissue property characterization
-- Mechanical behavior understanding
+- Tissue property characterisation
+- Mechanical behaviour understanding
 - Material property mapping
 - FEBio simulation model preparation
 
 ### Educational Use
 
 - Medical student anatomy training
-- Anatomical visualization
+- Anatomical visualisation
 - 3D anatomy understanding
 - Cross-sectional anatomy review
 
@@ -411,7 +413,7 @@ scalar.connection.method 6
 - Volumetric measurements (mm³)
 - Thickness maps (mm)
 - Anisotropy indices (dimensionless)
-- Direction vectors (normalized)
+- Direction vectors (normalised)
 - Statistical summaries
 
 ## Performance Considerations
@@ -434,9 +436,9 @@ scalar.connection.method 6
 
 **Total Pipeline:** ~15-30 minutes per cryosection image
 
-### Optimization Tips
+### Optimisation Tips
 
-1. **Use threaded processing:** Set `thread.max` to number of available cores
+1. **Use threaded processing:** Set `thread.max` to the number of available cores
 2. **Process multiple images:** Batch processing reduces overhead
 3. **Use appropriate bit depth:** 8-bit for initial segmentation, 16-bit for final analysis
 4. **Enable compression:** Use .nii.gz format to reduce file sizes
@@ -456,21 +458,21 @@ Connective tissue forms a continuous network throughout the human body, providin
 ### Tissue Anisotropy
 
 The tensor-based analysis reveals tissue anisotropy:
-- **Isotropic regions:** Random fiber orientation (equal in all directions)
-- **Anisotropic regions:** Preferred fiber orientation (directional preference)
-- **Highly organized tissues:** Muscle, tendon, ligament (highly anisotropic)
+- **Isotropic regions:** Random fibre orientation (equal in all directions)
+- **Anisotropic regions:** Preferred fibre orientation (directional preference)
+- **Highly organised tissues:** Muscle, tendon, ligament (highly anisotropic)
 - **Amorphous tissues:** Loose areolar tissue (nearly isotropic)
 
 ### Quantitative Metrics
 
 **Fractional Anisotropy (FA):**
 - Range: 0 (isotropic) to 1 (perfectly anisotropic)
-- High FA: Highly organized tissue
+- High FA: Highly organised tissue
 - Low FA: Random/disorganized tissue
 
 **Mean Anisotropy (MA):**
 - Average directionality magnitude
-- Indicates average structural organization
+- Indicates average structural organisation
 
 **Thickness Analysis:**
 - Local tissue thickness measurement
@@ -481,13 +483,13 @@ The tensor-based analysis reveals tissue anisotropy:
 
 ### Associated Projects
 
-- **Cloud2:** Data visualization and geometric analysis tool
+- **Cloud2:** Data visualisation and geometric analysis tool
   - https://github.com/heikostark/Cloud2
-  - Used for 3D visualization of results
+  - Used for 3D visualisation of results
 
 - **imagexd:** Core image processing framework
   - https://stark-jena.de/research-interests/software/imagexd/
-  - All processing executed through this tool
+  - All processing is executed through this tool
 
 - **Gordon1966 FEBio Plugin:** Muscle modeling
   - https://github.com/heikostark/Gordon1966
@@ -502,7 +504,7 @@ The tensor-based analysis reveals tissue anisotropy:
 - Detailed connective tissue analysis and classification
 - Anatomical variation studies
 - Biomechanical property relationships
-- Sex-based differences in tissue organization
+- Sex-based differences in tissue organisation
 
 ### Research Website
 
@@ -526,7 +528,7 @@ Complete macro language reference included in `imagexd.macro`:
 ### File Format Specifications
 
 **Raw RGB Format (.rgb):**
-- 24-bit color (8 bits each for R, G, B)
+- 24-bit colour (8 bits each for R, G, B)
 - No header information
 - Row-major byte ordering
 - Dimensions: 4096 x 2700 pixels
@@ -552,11 +554,11 @@ Complete macro language reference included in `imagexd.macro`:
 - Increase available RAM
 - Use 64-bit imagexd version
 
-**Problem:** Color segmentation not working
-- **Solution:** Adjust color thresholds in convert.run
-- Verify input image color profile
-- Check image histogram for color ranges
-- Test with smaller subset first
+**Problem:** Colour segmentation not working
+- **Solution:** Adjust colour thresholds in convert.run
+- Verify input image colour profile
+- Check image histogram for colour ranges
+- Test with a smaller subset first
 
 **Problem:** Gap filling not effective
 - **Solution:** Adjust morphological operation parameters
@@ -577,7 +579,7 @@ Contributions are welcome! To contribute:
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/improvement`)
 3. Document your changes
-4. Submit a pull request with detailed description
+4. Submit a pull request with a detailed description
 
 ### Areas for Contribution
 
@@ -585,7 +587,7 @@ Contributions are welcome! To contribute:
 - Improved gap-filling algorithms
 - Enhanced tissue classification methods
 - Validation against manual segmentation
-- Performance optimizations
+- Performance optimisations
 - Documentation improvements
 - Additional example datasets
 
@@ -638,7 +640,7 @@ University of Jena
 - Medical image analysis
 - Computational geometry
 - Biomechanical simulation
-- Tissue modeling
+- Tissue modelling
 - Anatomical reconstruction
 
 **Website:** https://stark-jena.de/  
